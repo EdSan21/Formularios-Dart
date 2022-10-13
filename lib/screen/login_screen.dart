@@ -52,10 +52,20 @@ class _LoginForm extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(children: [
           TextFormField(
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            // decoration: InputDecorations.authInputDecoration,
-          )
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecorations.authInputDecoration(
+                  hintText: "Ingresa la dirección de tu email",
+                  labelText: "Email",
+                  prefixIcon: Icons.alternate_email_sharp)),
+          TextFormField(
+              obscureText: true,
+              autocorrect: false,
+              keyboardType: TextInputType.text,
+              decoration: InputDecorations.authInputDecoration(
+                  hintText: "Ingresa tu contraseña",
+                  labelText: "Contraseña",
+                  prefixIcon: Icons.password_outlined))
         ]),
       ),
     );
