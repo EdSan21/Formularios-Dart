@@ -52,20 +52,65 @@ class _LoginForm extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(children: [
           TextFormField(
-              autocorrect: false,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecorations.authInputDecoration(
-                  hintText: "Ingresa la dirección de tu email",
-                  labelText: "Email",
-                  prefixIcon: Icons.alternate_email_sharp)),
+            autocorrect: false,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecorations.authInputDecoration(
+                hintText: "edvinperez237@gmail.com",
+                labelText: "Email",
+                prefixIcon: Icons.alternate_email_sharp),
+            onChanged: (value) => loginForm.email = value,
+            validator: (value) {
+              //regex
+              String pattern =
+                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+              RegExp regex = new RegExp(pattern);
+              return regex.hasMatch(value ?? '')
+                  ? null
+                  : 'El valor ingresado no es un email válido';
+            },
+          ),
+          SizedBox(height: 30), //espacio en blanco
+
           TextFormField(
               obscureText: true,
               autocorrect: false,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.emailAddress,
               decoration: InputDecorations.authInputDecoration(
-                  hintText: "Ingresa tu contraseña",
+                  hintText: "*****",
                   labelText: "Contraseña",
-                  prefixIcon: Icons.password_outlined))
+                  prefixIcon: Icons.password_outlined),
+              onChanged: (value) => loginForm.password = value,
+              validator: (value) {
+                return (value != null && value.length >= 6)
+                    ? null
+                    : 'La contraseña debe tener al menos 6 caracteres';
+              }),
+          SizedBox(height: 30), //espacio en blanco
+          MaterialButton(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            disabledColor: Colors.grey,
+            elevation: 0,
+            color: Colors.deepPurple,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+              child: Text(
+                loginForm.isLoading ? 'Espere' : 'Ingresar',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            onPressed: loginForm.isLoading
+                ? null
+                : () async {
+                    FocusScope.of(context).unfocus();
+                    if (!loginForm.isValidForm()) return;
+                    loginForm.isLoading = true;
+                    await Future.delayed(Duration(seconds: 2));
+
+                    loginForm.isLoading = false;
+                    Navigator.pushReplacementNamed(context, "home");
+                  },
+          )
         ]),
       ),
     );

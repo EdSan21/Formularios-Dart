@@ -7,7 +7,7 @@ class LoginFormProvider extends ChangeNotifier {
   String password = '';
 
   bool _isLoading = false;
-  bool get isLoading => isLoading;
+  bool get isLoading => _isLoading;
 
   set isLoading(bool value) {
     _isLoading = value;
