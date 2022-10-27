@@ -7,11 +7,8 @@ class ProductFormProvider extends ChangeNotifier {
   Productos product =
       new Productos(available: false, name: '', picture: '', price: 0, id: '');
 
-  bool available = false;
-  String name = '';
-  //String picture = '';
-  double price = 0;
-  //String id = '';
+  //late Productos product;
+
 // this.product
   ProductFormProvider();
 

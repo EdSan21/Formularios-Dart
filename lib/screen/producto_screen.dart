@@ -54,7 +54,7 @@ class _ProductoForm extends StatelessWidget {
                 hintText: "Azúcar Suli",
                 labelText: "Producto",
                 prefixIcon: Icons.shopping_bag_outlined),
-            onChanged: (value) => productoForm.name = value,
+            onChanged: (value) => productoForm.product.name = value,
             validator: (value) {
               return (value != null) ? null : 'Campo obligatorio';
             },
@@ -69,25 +69,37 @@ class _ProductoForm extends StatelessWidget {
                   hintText: "5.50",
                   labelText: "Precio",
                   prefixIcon: Icons.price_change_outlined),
-              onChanged: (value) => productoForm.price = value as double,
+              onChanged: (value) =>
+                  productoForm.product.price = value as double,
               validator: (value) {
                 return (value != null) ? null : 'Campo obligatorio';
               }),
           SizedBox(height: 30), //espacio en blanco
 
           TextFormField(
-              obscureText: true,
               autocorrect: false,
               keyboardType: TextInputType.text,
               decoration: InputDecorations.authInputDecoration(
                   hintText: "1",
                   labelText: "Disponible",
                   prefixIcon: Icons.check_box_outlined),
-              onChanged: (value) => productoForm.name = value,
+              onChanged: (value) =>
+                  productoForm.product.available = value as bool,
               validator: (value) {
                 return (value != null) ? null : 'Campo obligatorio';
               }),
           SizedBox(height: 30), //espacio en blanco
+
+          FlatButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, "home");
+            },
+            color: Color.fromARGB(255, 185, 26, 145),
+            child: Text(
+              'Insertar',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
 
           // MaterialButton(
           //   shape:
