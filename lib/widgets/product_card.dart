@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/models.dart';
+import '../services/product_service.dart';
 
 class ProductCard extends StatelessWidget {
   final Productos product;
@@ -19,7 +20,7 @@ class ProductCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             _BackgroundImage(product.picture),
-            _ProductDetails(title: product.name, subtitle: product.id),
+            _ProductDetails(title: product.name, subtitle: product.id!),
             Positioned(top: 0, right: 0, child: _PriceTag(product.price)),
             if (!product.available)
               Positioned(top: 0, right: 0, child: _NotAvailabe())
