@@ -8,9 +8,14 @@ import 'package:formulariologin/widgets/test_cards.dart';
 import 'package:formulariologin/ui/input_decorations.dart';
 import 'package:provider/provider.dart';
 
+void main() {
+  runApp(const CardScreen());
+}
+
 class CardScreen extends StatelessWidget {
   const CardScreen({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Container(child: TestoCard());
