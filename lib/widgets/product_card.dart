@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../models/models.dart';
@@ -20,6 +21,7 @@ class ProductCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             _BackgroundImage(product.picture),
+
             _ProductDetails(title: product.name, subtitle: product.id),
             Positioned(
                 top: 0, right: 0, child: _PriceTag(price: product.price)),
@@ -30,18 +32,47 @@ class ProductCard extends StatelessWidget {
 
             Container(
               child: BtnActualizar(),
-              margin: EdgeInsets.symmetric(horizontal: 75),
+              margin: EdgeInsets.symmetric(horizontal: 59),
             ),
 
             Container(
               child: BtnBorrar(),
-              margin: EdgeInsets.symmetric(horizontal: 150),
+              margin: EdgeInsets.symmetric(horizontal: 115),
             ),
-
+            Container(
+              child: BtnOnOff(),
+              margin: EdgeInsets.symmetric(horizontal: 160),
+              //margin: EdgeInsets.symmetric(horizontal: 0, vertical: 200),
+            ),
             // if (!product.available)
             //   Positioned(top: 0, right: 0, child: _NotAvailabe())
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BtnOnOff extends StatelessWidget {
+  const BtnOnOff({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          FlatButton(
+            onPressed: () {
+              //Navigator.pushReplacementNamed(context, "nuevoproducto");
+            },
+            height: 20,
+            color: Color.fromARGB(255, 179, 181, 52),
+            child: Text(
+              'Off',
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -107,7 +138,26 @@ class BtnBorrar extends StatelessWidget {
         children: [
           FlatButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, "nuevoproducto");
+              showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => AlertDialog(
+                          title: Text("ALERTA"),
+                          content: Text("¿Desea eliminar este producto?"),
+                          actions: <Widget>[
+                            FlatButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop('No');
+                                },
+                                child: Text('No')),
+                            FlatButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop('Si');
+                                },
+                                child: Text('Si')),
+                          ]));
+
+              //Navigator.pushReplacementNamed(context, "nuevoproducto");
             },
             height: 20,
             minWidth: 2.5,
