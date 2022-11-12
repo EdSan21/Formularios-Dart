@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:formulariologin/screen/editarproducto.dart';
 import 'package:formulariologin/screen/login_screen.dart';
 import 'package:formulariologin/screen/home_screen.dart';
 import 'package:formulariologin/screen/producto_screen.dart';
-import 'package:formulariologin/screen/catalogo_screen.dart';
+import 'package:formulariologin/screen/formnewproduct.dart';
 import 'package:formulariologin/screen/test_screen.dart';
 import '../models/product.dart';
 import 'package:provider/provider.dart';
@@ -27,11 +28,10 @@ class MyApp extends StatelessWidget {
         routes: {
           'login': (__) => LoginScreen(),
           'home': (__) => HomeScreen(),
-          'producto': (__) => ProductoScreen(),
-          'listado_producto': (__) => CardScreen(),
-          //  'catalogo': (__) => CatalogoScreen(
-          // productos: productos,
-          //    )
+          'productos': (__) => ProductoScreen(),
+          'nuevoproducto': (__) => FormNewProduct(),
+          'editarproducto': (__) => FormEditarProduct(),
+          //'listado_producto': (__) => CardScreen(),
         },
         theme: ThemeData.light()
             .copyWith(scaffoldBackgroundColor: Colors.grey[300]));

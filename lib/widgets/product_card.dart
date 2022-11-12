@@ -20,12 +20,104 @@ class ProductCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             _BackgroundImage(product.picture),
-            _ProductDetails(title: product.name, subtitle: product.id!),
-            Positioned(top: 0, right: 0, child: _PriceTag(product.price)),
-            if (!product.available)
-              Positioned(top: 0, right: 0, child: _NotAvailabe())
+            _ProductDetails(title: product.name, subtitle: product.id),
+            Positioned(
+                top: 0, right: 0, child: _PriceTag(price: product.price)),
+            Container(
+              child: BtnCrear(),
+              // margin: EdgeInsets.symmetric(horizontal: 8),
+            ),
+
+            Container(
+              child: BtnActualizar(),
+              margin: EdgeInsets.symmetric(horizontal: 75),
+            ),
+
+            Container(
+              child: BtnBorrar(),
+              margin: EdgeInsets.symmetric(horizontal: 150),
+            ),
+
+            // if (!product.available)
+            //   Positioned(top: 0, right: 0, child: _NotAvailabe())
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BtnCrear extends StatelessWidget {
+  const BtnCrear({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          FlatButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, "nuevoproducto");
+            },
+            height: 20,
+            color: Color.fromARGB(255, 207, 93, 52),
+            child: Text(
+              'Crear',
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BtnActualizar extends StatelessWidget {
+  const BtnActualizar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          FlatButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, "editarproducto");
+            },
+            height: 20,
+            color: Color.fromARGB(255, 96, 157, 52),
+            child: Text(
+              'Editar',
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BtnBorrar extends StatelessWidget {
+  const BtnBorrar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          FlatButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, "nuevoproducto");
+            },
+            height: 20,
+            minWidth: 2.5,
+            color: Color.fromARGB(255, 185, 26, 145),
+            child: Text(
+              'Borrar',
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -92,7 +184,7 @@ class _ProductDetails extends StatelessWidget {
             Text(
               subtitle,
               style: TextStyle(fontSize: 15, color: Colors.white),
-            )
+            ),
           ],
         ),
       ),
@@ -107,7 +199,7 @@ class _ProductDetails extends StatelessWidget {
 
 class _PriceTag extends StatelessWidget {
   final double price;
-  const _PriceTag(this.price);
+  const _PriceTag({Key? key, required this.price}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +208,7 @@ class _PriceTag extends StatelessWidget {
         fit: BoxFit.contain,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Text('\$$price',
+          child: Text('\Q$price',
               style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
       ),

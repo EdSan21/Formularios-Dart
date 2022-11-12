@@ -7,8 +7,7 @@ import 'package:formulariologin/models/product.dart';
 import 'package:http/http.dart' as http;
 
 class ProductService extends ChangeNotifier {
-  final String _baseUrl =
-      'https://forms-flutter-b2e26-default-rtdb.firebaseio.com/';
+  final String _baseUrl = '';
   final List<Productos> products = []; //arreglo o lista vacia
   late Productos selectedProducts;
 
@@ -50,23 +49,31 @@ class ProductService extends ChangeNotifier {
   }
 
   Future<String> UpdateProdut(Productos products) async {
-    final url = Uri.https(_baseUrl, 'productos/${products.id}.json');
-    final resp = await http.put(url, body: products.toJson());
-    final decodeData = resp.body;
-    //actualizar prods
-    final index =
-        this.products.indexWhere((element) => element.id == products.id);
-    this.products[index] = products;
-    return products.id!;
-  }
-
-  Future<String> CreateProduct(Productos products) async {
     final url = Uri.https(_baseUrl, 'productos.json');
     final resp = await http.post(url, body: products.toJson());
     final decodeData = json.decode(resp.body);
     products.id = decodeData['name'];
     this.products.add(products);
-    return products.id!;
+    return products.id;
+    //actualizar prods
+    // final index =
+    //     this.products.indexWhere((element) => element.id == products.id);
+    // this.products[index] = products;
+    // return products.id!;
+  }
+
+  Future<String> CreateProduct(Productos products) async {
+    final url = Uri.https(_baseUrl, 'productos/${products.id}.json');
+    final resp = await http.put(url, body: products.toJson());
+    final decodeData = resp.body;
+    final index =
+        this.products.indexWhere((element) => element.id == products.id);
+    this.products[index] = products;
+    return products.id;
+
+    //   products.id = decodeData['name'];
+    //   this.products.add(products);
+    //   return products.id!;
   }
 
   void updateSelectProductImage(String path) {

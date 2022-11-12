@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:formulariologin/models/product.dart';
+//late
+//Productos product = new Productos(available: false, name: '', picture: '', price: 0, id: '');
 
 class ProductFormProvider extends ChangeNotifier {
   GlobalKey<FormState> formKey = new GlobalKey<FormState>();
-  //late
-  Productos product =
-      new Productos(available: false, name: '', picture: '', price: 0, id: '');
-
-  //late Productos product;
+  late Productos product;
 
 // this.product
-  ProductFormProvider();
+  ProductFormProvider(this.product);
 
   UpdateAvailability(bool value) {
     print(value);

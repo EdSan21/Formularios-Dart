@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:formulariologin/providers/product_form_provider.dart';
 import 'package:formulariologin/widgets/auth_background.dart';
 import 'package:formulariologin/widgets/card_container.dart';
+import 'package:formulariologin/widgets/listado_prods.dart';
 // import 'package:formulariologin/screen/screens.dart';
 import 'package:formulariologin/ui/input_decorations.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/getproducts_provider.dart';
 
 class ProductoScreen extends StatelessWidget {
   const ProductoScreen({Key? key}) : super(key: key);
@@ -15,91 +18,79 @@ class ProductoScreen extends StatelessWidget {
     return Scaffold(
       body: AuthBackgroundProd(
         child: SingleChildScrollView(
-          child: Column(children: [
-            SizedBox(height: 250),
-            CardContainer(
-              child: Column(children: [
-                SizedBox(height: 10),
-                Text('Nuevo Producto',
-                    style: Theme.of(context).textTheme.headline4),
-                SizedBox(height: 30),
-                ChangeNotifierProvider(
-                    create: (__) => ProductFormProvider(),
-                    child: _ProductoForm())
-              ]),
-            ),
-            SizedBox(height: 50),
-          ]),
-        ),
+            child: ChangeNotifierProvider(
+                create: (__) => new GetProductosProvider(),
+                child: CardsProductos())),
       ),
     );
   }
 }
 
-class _ProductoForm extends StatelessWidget {
-  const _ProductoForm({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    final productoForm = Provider.of<ProductFormProvider>(context);
-    return Container(
-      child: Form(
-        key: productoForm.formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Column(children: [
-          TextFormField(
-            autocorrect: false,
-            keyboardType: TextInputType.text,
-            decoration: InputDecorations.authInputDecoration(
-                hintText: "Azúcar Suli",
-                labelText: "Producto",
-                prefixIcon: Icons.shopping_bag_outlined),
-            onChanged: (value) => productoForm.product.name = value,
-            validator: (value) {
-              return (value != null) ? null : 'Campo obligatorio';
-            },
-          ),
-          SizedBox(height: 30), //espacio en blanco
+// class _ProductoForm extends StatelessWidget {
+//   const _ProductoForm({Key? key}) : super(key: key);
 
-          TextFormField(
-              obscureText: true,
-              autocorrect: false,
-              keyboardType: TextInputType.text,
-              decoration: InputDecorations.authInputDecoration(
-                  hintText: "5.50",
-                  labelText: "Precio",
-                  prefixIcon: Icons.price_change_outlined),
-              onChanged: (value) =>
-                  productoForm.product.price = value as double,
-              validator: (value) {
-                return (value != null) ? null : 'Campo obligatorio';
-              }),
-          SizedBox(height: 30), //espacio en blanco
+//   @override
+//   Widget build(BuildContext context) {
+//     final productoForm = Provider.of<ProductFormProvider>(context);
+//     return Container(
+//       child: Form(
+//         key: productoForm.formKey,
+//         autovalidateMode: AutovalidateMode.onUserInteraction,
+//         child: Column(children: [
+//           TextFormField(
+//             autocorrect: false,
+//             keyboardType: TextInputType.text,
+//             decoration: InputDecorations.authInputDecoration(
+//                 hintText: "Azúcar Suli",
+//                 labelText: "Producto",
+//                 prefixIcon: Icons.shopping_bag_outlined),
+//             onChanged: (value) => productoForm.product.name = value,
+//             validator: (value) {
+//               return (value != null) ? null : 'Campo obligatorio';
+//             },
+//           ),
+//           SizedBox(height: 30), //espacio en blanco
 
-          TextFormField(
-              autocorrect: false,
-              keyboardType: TextInputType.text,
-              decoration: InputDecorations.authInputDecoration(
-                  hintText: "1",
-                  labelText: "Disponible",
-                  prefixIcon: Icons.check_box_outlined),
-              onChanged: (value) =>
-                  productoForm.product.available = value as bool,
-              validator: (value) {
-                return (value != null) ? null : 'Campo obligatorio';
-              }),
-          SizedBox(height: 30), //espacio en blanco
+//           TextFormField(
+//               obscureText: true,
+//               autocorrect: false,
+//               keyboardType: TextInputType.text,
+//               decoration: InputDecorations.authInputDecoration(
+//                   hintText: "5.50",
+//                   labelText: "Precio",
+//                   prefixIcon: Icons.price_change_outlined),
+//               onChanged: (value) =>
+//                   productoForm.product.price = value as double,
+//               validator: (value) {
+//                 return (value != null) ? null : 'Campo obligatorio';
+//               }),
+//           SizedBox(height: 30), //espacio en blanco
 
-          FlatButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, "home");
-            },
-            color: Color.fromARGB(255, 185, 26, 145),
-            child: Text(
-              'Insertar',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
+//           TextFormField(
+//               autocorrect: false,
+//               keyboardType: TextInputType.text,
+//               decoration: InputDecorations.authInputDecoration(
+//                   hintText: "1",
+//                   labelText: "Disponible",
+//                   prefixIcon: Icons.check_box_outlined),
+//               onChanged: (value) =>
+//                   productoForm.product.available = value as bool,
+//               validator: (value) {
+//                 return (value != null) ? null : 'Campo obligatorio';
+//               }),
+//           SizedBox(height: 30), //espacio en blanco
+
+//           FlatButton(
+//             onPressed: () {
+//               Navigator.pushReplacementNamed(context, "home");
+//             },
+//             color: Color.fromARGB(255, 185, 26, 145),
+//             child: Text(
+//               'Insertar',
+//               style: TextStyle(color: Colors.white),
+//             ),
+//           ),
 
           // MaterialButton(
           //   shape:
@@ -126,8 +117,8 @@ class _ProductoForm extends StatelessWidget {
           //           Navigator.pushReplacementNamed(context, "home");
           //         },
           // )
-        ]),
-      ),
-    );
-  }
-}
+//         ]),
+//       ),
+//     );
+//   }
+// }

@@ -36,7 +36,7 @@ class Prueba extends StatelessWidget {
               SizedBox(height: 30),
               FlatButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, "producto");
+                  Navigator.pushReplacementNamed(context, "nuevoproducto");
                 },
                 color: Color.fromARGB(240, 77, 148, 27),
                 child: Text(
@@ -47,7 +47,7 @@ class Prueba extends StatelessWidget {
               SizedBox(height: 30),
               FlatButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, "listado_producto");
+                  Navigator.pushReplacementNamed(context, "productos");
                 },
                 color: Color.fromARGB(241, 61, 126, 14),
                 child: Text(
