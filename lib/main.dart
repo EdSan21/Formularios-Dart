@@ -5,6 +5,8 @@ import 'package:formulariologin/screen/home_screen.dart';
 import 'package:formulariologin/screen/producto_screen.dart';
 import 'package:formulariologin/screen/formnewproduct.dart';
 import 'package:formulariologin/screen/test_screen.dart';
+import 'package:formulariologin/ui/infinite_package.dart';
+import 'package:formulariologin/ui/scroll.dart';
 import '../models/product.dart';
 import 'package:provider/provider.dart';
 import 'package:formulariologin/providers/product_form_provider.dart';
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
           'productos': (__) => ProductoScreen(),
           'nuevoproducto': (__) => FormNewProduct(),
           'editarproducto': (__) => FormEditarProduct(),
+          'catalogoinfinito': (__) => HomePage(),
           //'listado_producto': (__) => CardScreen(),
         },
         theme: ThemeData.light()
