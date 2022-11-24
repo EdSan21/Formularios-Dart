@@ -118,7 +118,7 @@ class FormularioProd extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.pushReplacementNamed(context, "productos");
+                Navigator.pushReplacementNamed(context, "home");
               },
             )
           ],

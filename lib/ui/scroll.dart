@@ -19,18 +19,18 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home: const HomePage());
+        home: const ScrollPage());
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ScrollPage extends StatefulWidget {
+  const ScrollPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ScrollPage> createState() => _ScrollPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ScrollPageState extends State<ScrollPage> {
   final _baseUrl =
       'https://my-json-server.typicode.com/EdSan21/API-Flutter/productos';
 
