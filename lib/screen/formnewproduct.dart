@@ -14,8 +14,11 @@ class FormNewProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:
+          AppBar(title: Text('Formulario'), backgroundColor: Colors.deepPurple),
       resizeToAvoidBottomInset: false,
       body: Column(children: [
+        SizedBox(height: 30),
         CardContainer(
           child: Column(
             children: [
@@ -28,11 +31,21 @@ class FormNewProduct extends StatelessWidget {
               ChangeNotifierProvider(
                   create: (_) => ProductFormProvider(
                       Productos(available: false, name: "", price: 0)),
-                  child: FormularioProd())
+                  child: FormularioProd()),
+              SizedBox(height: 30),
             ],
           ),
         ),
       ]),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, "home");
+        },
+        label: const Text('Insertar'),
+        icon: const Icon(Icons.checklist_rtl_rounded),
+        backgroundColor: Colors.deepPurpleAccent,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
@@ -103,24 +116,25 @@ class FormularioProd extends StatelessWidget {
                   prefixIcon: Icons.image,
                   labelText: "Imagen"),
             ),
-            SizedBox(height: 30),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              disabledColor: Colors.grey,
-              elevation: 0,
-              color: Color.fromARGB(255, 185, 26, 145),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: Text(
-                  "Registrar",
-                  style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "home");
-              },
-            )
+            // SizedBox(height: 30),
+
+            // MaterialButton(
+            //   shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(10)),
+            //   disabledColor: Colors.grey,
+            //   elevation: 0,
+            //   color: Color.fromARGB(255, 185, 26, 145),
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+            //     child: Text(
+            //       "Registrar",
+            //       style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            //     ),
+            //   ),
+            //   onPressed: () {
+            //     Navigator.pushReplacementNamed(context, "home");
+            //   },
+            // )
           ],
         ),
       ),

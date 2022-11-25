@@ -14,8 +14,11 @@ class FormEditarProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:
+          AppBar(title: Text('Formulario'), backgroundColor: Colors.blueGrey),
       resizeToAvoidBottomInset: false,
       body: Column(children: [
+        SizedBox(height: 30),
         CardContainer(
           child: Column(
             children: [
@@ -33,6 +36,15 @@ class FormEditarProduct extends StatelessWidget {
           ),
         ),
       ]),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, "home");
+        },
+        label: const Text('Editar'),
+        icon: const Icon(Icons.edit_note),
+        backgroundColor: Colors.blueGrey,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
@@ -104,23 +116,23 @@ class FormularioProd extends StatelessWidget {
                   labelText: "Imagen"),
             ),
             SizedBox(height: 30),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              disabledColor: Colors.grey,
-              elevation: 0,
-              color: Color.fromARGB(255, 26, 85, 87),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: Text(
-                  "Editar",
-                  style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "productos");
-              },
-            )
+            // MaterialButton(
+            //   shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(10)),
+            //   disabledColor: Colors.grey,
+            //   elevation: 0,
+            //   color: Color.fromARGB(255, 26, 85, 87),
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+            //     child: Text(
+            //       "Editar",
+            //       style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            //     ),
+            //   ),
+            //   onPressed: () {
+            //     Navigator.pushReplacementNamed(context, "productos");
+            //   },
+            // )
           ],
         ),
       ),

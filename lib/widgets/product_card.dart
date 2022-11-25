@@ -25,27 +25,62 @@ class ProductCard extends StatelessWidget {
             _ProductDetails(title: product.name, subtitle: product.id),
             Positioned(
                 top: 0, right: 0, child: _PriceTag(price: product.price)),
-            Container(
-              child: BtnCrear(),
-              // margin: EdgeInsets.symmetric(horizontal: 8),
-            ),
+            // Container(
+            //   child: BtnCrear(),
+            //   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 1),
+            // ),
 
-            Container(
-              child: BtnActualizar(),
-              margin: EdgeInsets.symmetric(horizontal: 59),
-            ),
+            // Container(
+            //   child: BtnActualizar(),
+            //   margin: EdgeInsets.symmetric(horizontal: 13, vertical: 2),
+            // ),
 
+            // Container(
+            //   child: BtnOnOff(),
+            //   margin: EdgeInsets.symmetric(horizontal: 140),
+            // ),
             Container(
-              child: BtnBorrar(),
-              margin: EdgeInsets.symmetric(horizontal: 115),
-            ),
-            Container(
-              child: BtnOnOff(),
-              margin: EdgeInsets.symmetric(horizontal: 160),
-              //margin: EdgeInsets.symmetric(horizontal: 0, vertical: 200),
-            ),
-            // if (!product.available)
-            //   Positioned(top: 0, right: 0, child: _NotAvailabe())
+                width: 40,
+                margin: EdgeInsets.symmetric(horizontal: 17, vertical: 40),
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  floatingActionButton: FloatingActionButton(
+                    heroTag: null,
+                    backgroundColor: Color.fromARGB(255, 100, 147, 11),
+                    child: Icon(Icons.delete),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) => AlertDialog(
+                                  title: Text("ALERTA"),
+                                  content:
+                                      Text("¿Desea eliminar este producto?"),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop('No');
+                                        },
+                                        child: Text('No')),
+                                    FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop('Si');
+                                        },
+                                        child: Text('Si')),
+                                  ]));
+                    },
+                  ),
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.endFloat,
+                )
+                //child: BtnOnOff(),
+                //margin: EdgeInsets.symmetric(horizontal: 160),
+                //margin: EdgeInsets.symmetric(horizontal: 0, vertical: 200),
+                //    ),
+
+                // if (!product.available)
+                //   Positioned(top: 0, right: 0, child: _NotAvailabe())
+                )
           ],
         ),
       ),
@@ -66,7 +101,7 @@ class BtnOnOff extends StatelessWidget {
               //Navigator.pushReplacementNamed(context, "nuevoproducto");
             },
             height: 20,
-            color: Color.fromARGB(255, 179, 181, 52),
+            color: Color.fromARGB(255, 181, 52, 52),
             child: Text(
               'Off',
               style: TextStyle(color: Colors.white, fontSize: 12),
@@ -116,7 +151,7 @@ class BtnActualizar extends StatelessWidget {
               Navigator.pushReplacementNamed(context, "editarproducto");
             },
             height: 20,
-            color: Color.fromARGB(255, 96, 157, 52),
+            color: Color.fromARGB(255, 183, 33, 68),
             child: Text(
               'Editar',
               style: TextStyle(color: Colors.white, fontSize: 12),
@@ -231,10 +266,7 @@ class _ProductDetails extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            Text(
-              subtitle,
-              style: TextStyle(fontSize: 15, color: Colors.white),
-            ),
+            BtnActualizar(),
           ],
         ),
       ),
@@ -293,3 +325,57 @@ class _NotAvailabe extends StatelessWidget {
         ));
   }
 }
+
+
+// Scaffold(
+//               body: Center(),
+//               floatingActionButton:
+//                   Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+//                 FloatingActionButton(
+//                   onPressed: () {
+//                     Navigator.pushReplacementNamed(context, "nuevoproducto");
+//                   },
+//                   child: Icon(Icons.plus_one),
+//                   backgroundColor: Color.fromARGB(255, 220, 72, 23),
+//                 ),
+//                 FloatingActionButton(
+//                   onPressed: () {
+//                     Navigator.pushReplacementNamed(context, "editarproducto");
+//                   },
+//                   child: Icon(Icons.edit_note),
+//                   backgroundColor: Color.fromARGB(255, 84, 153, 44),
+//                 ),
+//                 FloatingActionButton(
+//                   onPressed: () {
+//                     showDialog(
+//                         context: context,
+//                         barrierDismissible: false,
+//                         builder: (context) => AlertDialog(
+//                                 title: Text("ALERTA"),
+//                                 content: Text("¿Desea eliminar este producto?"),
+//                                 actions: <Widget>[
+//                                   FlatButton(
+//                                       onPressed: () {
+//                                         Navigator.of(context).pop('No');
+//                                       },
+//                                       child: Text('No')),
+//                                   FlatButton(
+//                                       onPressed: () {
+//                                         Navigator.of(context).pop('Si');
+//                                       },
+//                                       child: Text('Si')),
+//                                 ]));
+//                   },
+//                   child: Icon(Icons.delete),
+//                   backgroundColor: Colors.blueGrey,
+//                 ),
+//                 FloatingActionButton(
+//                   onPressed: () {
+//                     Navigator.pushReplacementNamed(context, "home");
+//                   },
+//                   child: Icon(Icons.code_off_sharp),
+//                   backgroundColor: Color.fromARGB(255, 35, 68, 84),
+//                 ),
+//               ]),
+//               backgroundColor: Colors.transparent,
+//             )
