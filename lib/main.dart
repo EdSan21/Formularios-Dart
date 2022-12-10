@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:formulariologin/Examen/AgregarProducto.dart';
+import 'package:formulariologin/Examen/ListadoProducto.dart';
+import 'package:formulariologin/Examen/inicio.dart';
 import 'package:formulariologin/screen/editarproducto.dart';
 import 'package:formulariologin/screen/login_screen.dart';
 import 'package:formulariologin/screen/home_screen.dart';
@@ -9,6 +12,8 @@ import 'package:formulariologin/ui/scroll.dart';
 import '../models/product.dart';
 import 'package:provider/provider.dart';
 import 'package:formulariologin/providers/product_form_provider.dart';
+
+import 'Examen/EditarProducto.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +38,10 @@ class MyApp extends StatelessWidget {
           'nuevoproducto': (__) => FormNewProduct(),
           'editarproducto': (__) => FormEditarProduct(),
           'catalogoinfinito': (__) => ScrollPage(),
+          //-----------
+          'inicio': (__) => Inicio(),
+          'newproducto': (__) => AgregarProducto(),
+          'listproducto': (__) => ListadoProducto(),
 
           //'listado_producto': (__) => CardScreen(),
         },
