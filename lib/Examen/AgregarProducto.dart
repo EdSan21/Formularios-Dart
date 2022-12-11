@@ -21,6 +21,7 @@ class _AgregarProducto extends State<AgregarProducto> {
   @override
   void initState() {
     mydb.open(); //initilization database
+
     super.initState();
   }
 
@@ -60,7 +61,7 @@ class _AgregarProducto extends State<AgregarProducto> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    mydb.db.rawInsert(
+                    mydb.db?.rawInsert(
                         "INSERT INTO productos (name, codigo, price, available) VALUES (?, ?, ?, ?);",
                         [
                           name.text,

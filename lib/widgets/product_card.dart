@@ -21,7 +21,7 @@ class ProductCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             _BackgroundImage(product.picture),
-
+            Container(child: BtnOnOff()),
             _ProductDetails(title: product.name, subtitle: product.id),
             Positioned(
                 top: 0, right: 0, child: _PriceTag(price: product.price)),

@@ -2,7 +2,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MyDb {
-  late Database db;
+  Database? db;
 
   Future open() async {
     // Get a location using getDatabasesPath
@@ -35,7 +35,7 @@ class MyDb {
 
   Future<Map<dynamic, dynamic>?> getStudent(int codigo) async {
     List<Map> maps =
-        await db.query('productos', where: 'codigo = ?', whereArgs: [codigo]);
+        await db!.query('productos', where: 'codigo = ?', whereArgs: [codigo]);
     //getting student data with roll no.
     if (maps.length > 0) {
       return maps.first;

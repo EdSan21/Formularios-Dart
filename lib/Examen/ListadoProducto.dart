@@ -24,7 +24,7 @@ class _ListadoProducto extends State<ListadoProducto> {
   getdata() {
     Future.delayed(Duration(milliseconds: 500), () async {
       //use delay min 500 ms, because database takes time to initilize.
-      slist = await mydb.db.rawQuery('SELECT * FROM productos');
+      slist = await mydb.db!.rawQuery('SELECT * FROM productos');
 
       setState(() {}); //refresh UI after getting data from table.
     });
@@ -39,7 +39,7 @@ class _ListadoProducto extends State<ListadoProducto> {
       body: SingleChildScrollView(
         child: Container(
           child: slist.length == 0
-              ? Text("No any students to show.")
+              ? Text("No hay productos para mostrar")
               : //show message if there is no any student
               Column(
                   //or populate list to Column children if there is student data.
@@ -65,7 +65,7 @@ class _ListadoProducto extends State<ListadoProducto> {
                                 icon: Icon(Icons.edit)),
                             IconButton(
                                 onPressed: () async {
-                                  await mydb.db.rawDelete(
+                                  await mydb.db!.rawDelete(
                                       "DELETE FROM productos WHERE codigo = ?",
                                       [stuone["codigo"]]);
                                   //delete student data with roll no.

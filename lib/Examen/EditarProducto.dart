@@ -76,7 +76,7 @@ class _EditarProducto extends State<EditarProducto> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    mydb.db.rawInsert(
+                    mydb.db?.rawInsert(
                         "UPDATE students SET name = ?, codigo = ?, price = ?, available = ? WHERE codigo = ?",
                         [
                           name.text,
